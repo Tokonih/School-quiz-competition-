@@ -19,6 +19,9 @@ function validation(){
     }
 }
 
+let signinEmail = document.getElementById('signinEmail')
+let signinPass = document.getElementById('signinPass')
+
 
 let signIn = document.getElementById('signIn')
 if(signIn){
@@ -30,10 +33,14 @@ if(signIn){
             alert('no student avaliable')
         }else {
             for(let i=0; i<storedstudent.length; i++){
-                if(storedstudent[i].)
+                if(storedstudent[i].school == signinSch.value && storedstudent[i].email ==signinEmail.value && storedstudent[i].password == signinPass.value){
+                    alert('login successful')
+                }else{
+                    alert('invalid login details')
+                }
             }
         }
         validation()
-        alert("working")
+        // alert("working")
     }
 }
