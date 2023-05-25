@@ -31,11 +31,13 @@ function validation() {
         password: password.value
     }
    
-
-    let schData = localStorage.getItem('schools')
-    let infocontent = schData ? JSON.parse(schData) : []
-    infocontent.push(obj)
-    localStorage.setItem('Schools',JSON.stringify(infocontent))
+    let schData = JSON.parse(localStorage.getItem('schools')) || [];
+    schData.push(obj)
+    localStorage.setItem('schools', JSON.stringify(schData))
+    // let schData = localStorage.getItem('schools')
+    // let infocontent = schData ? JSON.parse(schData) : []
+    // infocontent.push(obj)
+    // localStorage.setItem('Schools',JSON.stringify(infocontent))
 
 }
 

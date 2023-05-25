@@ -1,3 +1,15 @@
+let schName = JSON.parse(localStorage.getItem('schools'))
+console.log(schName)
+let regSchool = document.getElementById('regSchool')
+schName.forEach(
+    function schools(data){
+        let option = document.createElement('option');
+        option.value = data.school;
+        option.innerHTML =data.school;
+        regSchool.appendChild(option)
+    }
+)
+
 let info = document.querySelectorAll('.info')
 
 function validation(){
@@ -9,12 +21,10 @@ function validation(){
 }
 
 class student{
-    constructor(school, state, email, phone, address, password){
+    constructor(school, email, phone, password){
         this.school = school;
-        this.state =state;
         this.email = email;
         this.phone =phone;
-        this.address = address;
         this.password = password
     }
     login (email, password){
@@ -26,19 +36,36 @@ class student{
     }
 }
 
-// let school = document.getElementById('school')
-// let state = document.getElementById('state')
-// let email = document.getElementById('email')
-// let phone = document.getElementById('phone')
-// let address = document.getElementById('address')
-// let password = document.getElementById('password')
+
+let School = document.getElementById('regSchool')
+let regPhone = document.getElementById('regPhone')
+let regEmail = document.getElementById('regEmail')
+let regPassword = document.getElementById('regPassword')
 
 
+let studentArr = []
 let studentBtn = document.getElementById('studentBtn')
-
 if(studentBtn){
     studentBtn.onclick = (e) => {
         e.preventDefault()
+        if(!School.value || !regEmail.value || !regPhone.value || !regPassword.value){
+            return
+        }else{
+            alert('Student Registration Successful')
+        }
+        let studentData = new student(School.value, regEmail.value,  regPhone.value, regPassword.value)
+        studentArr.push(studentData)
+        console.log(studentArr)
+        localStorage.setItem('studentsData', JSON.stringify(studentArr))
         validation()
     }
 }
+
+// let signIn = document.getElementById('signIn')
+// if(signIn){
+//     signIn.onclick = (e) =>{
+//         e.preventDefault()
+//         validation()
+//         alert("working")
+//     }
+// }
