@@ -32,15 +32,24 @@ if(signIn){
         if(storedstudent == null){
             alert('no student avaliable')
         }else {
-            for(let i=0; i<storedstudent.length; i++){
-                if(storedstudent[i].school == signinSch.value && storedstudent[i].email ==signinEmail.value && storedstudent[i].password == signinPass.value){
-                    alert('login successful')
-                }else{
-                    alert('invalid login details')
-                }
+            let getStudent = storedstudent.find((student) =>{
+                return(student.school == signinSch.value && student.email ==signinEmail.value && student.password == signinPass.value)
+            })
+            if (getStudent){
+                alert('login successful')
+                    window.location.href = "Quiz.html"
+            }else{
+                alert('invalid login details')
             }
+            // for(let i=0; i<storedstudent.length; i++){
+            //     if(storedstudent[i].school == signinSch.value && storedstudent[i].email ==signinEmail.value && storedstudent[i].password == signinPass.value){
+            //         alert('login successful')
+            //         window.location.href = "Quiz.html"
+            //     }else{
+            //         alert('invalid login details')
+            //     }
+            // }
         }
         validation()
-        // alert("working")
     }
 }

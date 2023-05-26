@@ -266,3 +266,18 @@ span{
  span{
      color: red;
  }
+
+ /* Quiz */
+ .student-Detail{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+ }
+
+ .student-Detail div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+ }

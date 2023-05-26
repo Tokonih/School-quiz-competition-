@@ -21,11 +21,13 @@ function validation(){
 }
 
 class student{
-    constructor(school, email, phone, password){
+    constructor(Name, school, email, phone, password){
+        this.Name = Name
         this.school = school;
         this.email = email;
         this.phone =phone;
         this.password = password
+
     }
     login (email, password){
         if(email == this.email && password == this.password){
@@ -41,6 +43,7 @@ let School = document.getElementById('regSchool')
 let regPhone = document.getElementById('regPhone')
 let regEmail = document.getElementById('regEmail')
 let regPassword = document.getElementById('regPassword')
+let regName = document.getElementById('regName')
 
 
 let studentArr = []
@@ -48,15 +51,16 @@ let studentBtn = document.getElementById('studentBtn')
 if(studentBtn){
     studentBtn.onclick = (e) => {
         e.preventDefault()
-        if(!School.value || !regEmail.value || !regPhone.value || !regPassword.value){
+        if( !regName.value ||!School.value || !regEmail.value || !regPhone.value || !regPassword.value){
             return
         }else{
             alert('Student Registration Successful')
         }
-        let studentData = new student(School.value, regEmail.value,  regPhone.value, regPassword.value)
-        studentArr.push(studentData)
-        console.log(studentArr)
-        localStorage.setItem('studentsData', JSON.stringify(studentArr))
+        let studentData = new student(regName.value, School.value, regEmail.value,  regPhone.value, regPassword.value)
+        // console.log(studentArr)
+        let studentInfo = JSON.parse(localStorage.getItem('studentsData')) || [];
+        studentInfo.push(studentData)
+        localStorage.setItem('studentsData', JSON.stringify(studentInfo))
         validation()
     }
 }
