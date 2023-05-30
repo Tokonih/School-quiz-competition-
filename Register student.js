@@ -16,16 +16,15 @@ function validation(){
     for( let i=0; i<info.length; i++){
         if (info[i].value == "" || info[i].value == null){
             info[i].nextElementSibling.innerHTML = info[i].previousElementSibling.innerHTML + " is required"
-        }
+        } info[i].nextElementSibling.innerHTML = ""
     }
 }
 
 class student{
-    constructor(Name, school, email, phone, password){
+    constructor(Name, school, email, password){
         this.Name = Name
         this.school = school;
         this.email = email;
-        this.phone =phone;
         this.password = password
 
     }
@@ -40,10 +39,12 @@ class student{
 
 
 let School = document.getElementById('regSchool')
-let regPhone = document.getElementById('regPhone')
+// let regPhone = document.getElementById('regPhone')
 let regEmail = document.getElementById('regEmail')
 let regPassword = document.getElementById('regPassword')
 let regName = document.getElementById('regName')
+let popup = document.getElementById("popup")
+let close = document.getElementById("close")
 
 
 let studentArr = []
@@ -51,12 +52,13 @@ let studentBtn = document.getElementById('studentBtn')
 if(studentBtn){
     studentBtn.onclick = (e) => {
         e.preventDefault()
-        if( !regName.value ||!School.value || !regEmail.value || !regPhone.value || !regPassword.value){
+        if( !regName.value || !School.value || !regEmail.value || !regPassword.value){
             return
         }else{
-            alert('Student Registration Successful')
+            popup.classList.add("open-popup")
+
         }
-        let studentData = new student(regName.value, School.value, regEmail.value,  regPhone.value, regPassword.value)
+        let studentData = new student(regName.value, School.value, regEmail.value, regPassword.value)
         // console.log(studentArr)
         let studentInfo = JSON.parse(localStorage.getItem('studentsData')) || [];
         studentInfo.push(studentData)
@@ -64,6 +66,15 @@ if(studentBtn){
         validation()
     }
 }
+
+if(close){
+    close.onclick =()=>{
+        popup.classList.remove("open-popup")
+
+    }
+}
+
+
 
 // let signIn = document.getElementById('signIn')
 // if(signIn){

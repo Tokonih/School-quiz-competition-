@@ -6,11 +6,15 @@ let email = document.getElementById('email')
 let phone = document.getElementById('phone')
 let address = document.getElementById('address')
 let password = document.getElementById('password')
+let popup = document.getElementById("popup")
+let close = document.getElementById("close")
 
 function validation() {
     for (let i = 0; i < info.length; i++) {
         if (info[i].value == "" || info[i].value == null) {
             info[i].nextElementSibling.innerHTML = info[i].previousElementSibling.innerHTML + " is required"
+        }else{
+            info[i].nextElementSibling.innerHTML = ""
         }
     }
 
@@ -18,7 +22,9 @@ function validation() {
     if (!school.value || !state.value || !email.value || !phone.value || !address.value || !password.value) {
         return
     } else {
-        alert('School registration successful')
+        popup.classList.add("open-popup")
+
+        // alert('School registration successful')
         // window.location.href = 'Register student.html'
     }
 
@@ -48,4 +54,9 @@ if (schBtn) {
     }
 }
 
+if(close){
+    close.onclick =()=>{
+        popup.classList.remove("open-popup")
 
+    }
+}

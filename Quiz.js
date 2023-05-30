@@ -1,18 +1,19 @@
 let studentDetail = document.getElementById('studentDetail')
-let getStudent = localStorage.getItem('studentsData')
+let getStudent = localStorage.getItem('participant')
 let storedstudent = JSON.parse(getStudent)
-for (let i = 0; i < storedstudent.length; i++) {
-   console.log(storedstudent)
+console.log(storedstudent)
+// for (let i = 0; i < storedstudent.length; i++) {
+   // console.log(storedstudent)
    let nav = `
    <div>
-   <strong>Name: </strong><p>${storedstudent[i].Name}</p>
+   <strong>Name: </strong><p>${storedstudent.Name}</p>
 </div>
 <div>
-   <strong>School:</strong><p>${storedstudent[i].school}</p>
+   <strong>School:</strong><p>${storedstudent.school}</p>
 </div>
    `
    studentDetail.innerHTML = nav
-}
+// }
 
 let questions = [
    {
@@ -74,6 +75,7 @@ let questions = [
 
 
 let result = ""
+let point = 0 
 
 function generateQuestion() {
    let questionsArr = questions.length
@@ -104,12 +106,28 @@ function answers() {
 
    let select = document.querySelectorAll('.select')
    for (let i = 0; i < select.length; i++) {
-      select[i].addEventListener('click', () => {
+      select[i].addEventListener('click', (e) => {
          // alert('working')
+         // e.preventDefault()
          if(select[i].innerHTML == storedAns.ans){
-            alert('correct')
+            // setInterval(()=>{
+            //    alert('correct ')
+            // }, 500);
+            // setTimeout(()=>{
+            //    // window.location.reload()
+            // }, 1000)
+            // alert('correct')
+            point++
+            console.log(point)
+            setTimeout(function() {
+               console.log("This message will be displayed after a delay");
+             }, 2000);
+             
          }else{
-            alert('wrong answer')
+            // alert('wrong answer')
+            setTimeout(function() {
+               console.log("This message will be displayed after a delay");
+             }, 1000);
          }
       })
    }

@@ -15,13 +15,18 @@ function validation(){
     for( let i=0; i<info.length; i++){
         if (info[i].value == "" || info[i].value == null){
             info[i].nextElementSibling.innerHTML = info[i].previousElementSibling.innerHTML + " is required"
+        }else{
+            info[i].nextElementSibling.innerHTML = ""
         }
     }
 }
 
+
+
 let signinEmail = document.getElementById('signinEmail')
 let signinPass = document.getElementById('signinPass')
-
+let popup = document.getElementById("popup")
+let close = document.getElementById("close")
 
 let signIn = document.getElementById('signIn')
 if(signIn){
@@ -33,23 +38,29 @@ if(signIn){
             alert('no student avaliable')
         }else {
             let getStudent = storedstudent.find((student) =>{
-                return(student.school == signinSch.value && student.email ==signinEmail.value && student.password == signinPass.value)
+                return(student.school == signinSch.value && student.email == signinEmail.value && student.password == signinPass.value)
             })
             if (getStudent){
-                alert('login successful')
-                    window.location.href = "Quiz.html"
+                popup.classList.add("open-popup")
+                
+                // alert('login successful')
+                localStorage.setItem('participant', JSON.stringify(getStudent))
+                console.log(getStudent)
+                
+                    window.location.href = "Timer page.html"
+                    
             }else{
                 alert('invalid login details')
             }
-            // for(let i=0; i<storedstudent.length; i++){
-            //     if(storedstudent[i].school == signinSch.value && storedstudent[i].email ==signinEmail.value && storedstudent[i].password == signinPass.value){
-            //         alert('login successful')
-            //         window.location.href = "Quiz.html"
-            //     }else{
-            //         alert('invalid login details')
-            //     }
-            // }
+         
         }
         validation()
+    }
+}
+
+if(close){
+    close.onclick =()=>{
+        popup.classList.remove("open-popup")
+
     }
 }
