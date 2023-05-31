@@ -15,7 +15,7 @@ console.log(storedstudent)
    studentDetail.innerHTML = nav
 // }
 
-let questions = [
+let questionsArr = [
    {
       ques: "When did Nigeria gain independence",
       options: ["1999", "1970", "1960"],
@@ -74,66 +74,93 @@ let questions = [
 ]
 
 
-let result = ""
+let index = 0
 let point = 0 
+let quizContainer = document.getElementById("ansBtn")
 
 function generateQuestion() {
-   let questionsArr = questions.length
-   let index = Math.floor(Math.random() * questionsArr)
-   result = questions[index]
-   console.log(result)
-   localStorage.setItem('Ques & ans', JSON.stringify(result))
-   document.getElementById('questions').innerHTML = result.ques
+   let quizQuestion = `<h2 class="questions">${questionsArr[index].ques}</h2>`;
+   quizContainer.innerHTML += quizQuestion;
+   questionsArr[index].options.forEach((answer)=>{
+      let btns = `
+      <button class="answers">${answer}</button>
+      `
+      quizContainer.innerHTML += btns
+   })
+
+   // let questionsArr = questions.length
+   // let index = Math.floor(Math.random() * questionsArr)
+   // result = questions[index]
+   // console.log(result)
+   // localStorage.setItem('Ques & ans', JSON.stringify(result))
+   // document.getElementById('questions').innerHTML = result.ques
 }
 generateQuestion()
 
-let ansBtn = document.getElementById('ansBtn')
-function answers() {
-   let getAns = localStorage.getItem("Ques & ans")
-   let storedAns = JSON.parse(getAns)
-   let Btns = `
-  <div>
-  <button class="select" >${storedAns.options[0]}</button>
-   </div>
-   <div>
-   <button class="select">${storedAns.options[1]}</button>
-   </div>
-   <div>
-  <button class="select">${storedAns.options[2]}</button>
-</div>
-  `
-   ansBtn.innerHTML = Btns
-
-   let select = document.querySelectorAll('.select')
-   for (let i = 0; i < select.length; i++) {
-      select[i].addEventListener('click', (e) => {
-         // alert('working')
-         // e.preventDefault()
-         if(select[i].innerHTML == storedAns.ans){
-            // setInterval(()=>{
-            //    alert('correct ')
-            // }, 500);
-            // setTimeout(()=>{
-            //    // window.location.reload()
-            // }, 1000)
-            // alert('correct')
-            point++
-            console.log(point)
-            setTimeout(function() {
-               console.log("This message will be displayed after a delay");
-             }, 2000);
-             
-         }else{
-            // alert('wrong answer')
-            setTimeout(function() {
-               console.log("This message will be displayed after a delay");
-             }, 1000);
+quizContainer.addEventListener("click", (e) =>{
+   if(e.target.className == "answers"){
+      if(e.target.innerHTML == questionsArr[index].ans){
+         index++
+         quizContainer.innerHTML=""
+         generateQuestion()at
+         if(index == questionsArr.length){
+            alert("game over");
+            index = questionsArr.length -1
          }
-      })
-   }
 
-}
-answers()
+      }else{
+         alert('wrong answer')
+      }
+   }
+})
+
+// let ansBtn = document.getElementById('ansBtn')
+// function answers() {
+//    let getAns = localStorage.getItem("Ques & ans")
+//    let storedAns = JSON.parse(getAns)
+//    let Btns = `
+//   <div>
+//   <button class="select" >${storedAns.options[0]}</button>
+//    </div>
+//    <div>
+//    <button class="select">${storedAns.options[1]}</button>
+//    </div>
+//    <div>
+//   <button class="select">${storedAns.options[2]}</button>
+// </div>
+//   `
+//    ansBtn.innerHTML = Btns
+
+//    let select = document.querySelectorAll('.select')
+//    for (let i = 0; i < select.length; i++) {
+//       select[i].addEventListener('click', (e) => {
+//          // alert('working')
+//          // e.preventDefault()
+//          if(select[i].innerHTML == storedAns.ans){
+//             // setInterval(()=>{
+//             //    alert('correct ')
+//             // }, 500);
+//             // setTimeout(()=>{
+//             //    // window.location.reload()
+//             // }, 1000)
+//             // alert('correct')
+//             point++
+//             console.log(point)
+//             setTimeout(function() {
+//                console.log("This message will be displayed after a delay");
+//              }, 2000);
+             
+//          }else{
+//             // alert('wrong answer')
+//             setTimeout(function() {
+//                console.log("This message will be displayed after a delay");
+//              }, 1000);
+//          }
+//       })
+//    }
+
+// }
+// answers()
 
 
 
