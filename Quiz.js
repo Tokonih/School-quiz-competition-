@@ -94,7 +94,7 @@ function generateQuestion() {
   quizContainer.innerHTML += quizQuestion;
   questionsArr[index].options.forEach((answer) => {
     let btns = `
-      <button class="answers">${answer}</button>
+      <button class="answers" type="button">${answer}</button>
       `;
     quizContainer.innerHTML += btns;
   });
@@ -112,14 +112,17 @@ quizContainer.addEventListener("click", (e) => {
   if (e.target.className == "answers") {
     if (e.target.innerHTML == questionsArr[index].ans) {
       index++;
+      
       quizContainer.innerHTML = "";
-      generateQuestion(); 
+      generateQuestion();
+
       if (index == questionsArr.length) {
         alert("game over");
         index = questionsArr.length - 1;
       }
     } else {
-      alert("wrong answer");
+      index++;
+      // alert("wrong answer");
     }
   }
 });

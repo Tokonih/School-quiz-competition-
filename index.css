@@ -386,6 +386,16 @@ span {
     font-family: 500;
 }
 
+/* Quiz */
+.answers{
+    width: 100%;
+    height: 40px;
+    border: none;
+    color: white;
+    background-color: #294e83;
+    margin-top: 3rem;v
+}
+
 .footer{
     width: 100%;
     height: 200px;
