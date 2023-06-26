@@ -99,78 +99,48 @@ function generateQuestion() {
     quizContainer.innerHTML += btns;
   });
 
-  // let questionsArr = questions.length
-  // let index = Math.floor(Math.random() * questionsArr)
-  // result = questions[index]
-  // console.log(result)
-  // localStorage.setItem('Ques & ans', JSON.stringify(result))
-  // document.getElementById('questions').innerHTML = result.ques
+  
 }
 generateQuestion();
 
 quizContainer.addEventListener("click", (e) => {
-  if (e.target.className == "answers") {
-    if (e.target.innerHTML == questionsArr[index].ans) {
-      index++;
-      
-      quizContainer.innerHTML = "";
+  if (e.target.className === "answers") {
+    if (e.target.innerHTML === questionsArr[index].ans) {
+      point++;
+      console.log(point)
+    }
+    index++;
+    
+    quizContainer.innerHTML = "";
+    
+    if (index < questionsArr.length) {
       generateQuestion();
-
-      if (index == questionsArr.length) {
-        alert("game over");
-        index = questionsArr.length - 1;
-      }
     } else {
-      index++;
-      // alert("wrong answer");
+      alert("Game over");
+  alert(point)
+
+      index = questionsArr.length - 1;
     }
   }
 });
 
-// let ansBtn = document.getElementById('ansBtn')
-// function answers() {
-//    let getAns = localStorage.getItem("Ques & ans")
-//    let storedAns = JSON.parse(getAns)
-//    let Btns = `
-//   <div>
-//   <button class="select" >${storedAns.options[0]}</button>
-//    </div>
-//    <div>
-//    <button class="select">${storedAns.options[1]}</button>
-//    </div>
-//    <div>
-//   <button class="select">${storedAns.options[2]}</button>
-// </div>
-//   `
-//    ansBtn.innerHTML = Btns
 
-//    let select = document.querySelectorAll('.select')
-//    for (let i = 0; i < select.length; i++) {
-//       select[i].addEventListener('click', (e) => {
-//          // alert('working')
-//          // e.preventDefault()
-//          if(select[i].innerHTML == storedAns.ans){
-//             // setInterval(()=>{
-//             //    alert('correct ')
-//             // }, 500);
-//             // setTimeout(()=>{
-//             //    // window.location.reload()
-//             // }, 1000)
-//             // alert('correct')
-//             point++
-//             console.log(point)
-//             setTimeout(function() {
-//                console.log("This message will be displayed after a delay");
-//              }, 2000);
+// quizContainer.addEventListener("click", (e) => {
+//   if (e.target.className == "answers") {
+//     if (e.target.innerHTML == questionsArr[index].ans) {
+//       index++;
+      
+//       quizContainer.innerHTML = "";
+//       generateQuestion();
 
-//          }else{
-//             // alert('wrong answer')
-//             setTimeout(function() {
-//                console.log("This message will be displayed after a delay");
-//              }, 1000);
-//          }
-//       })
-//    }
+//       if (index == questionsArr.length) {
+//         alert("game over");
+//         index = questionsArr.length - 1;
+//       }
+//     } else {
+//       index++;
+//       // alert("wrong answer");
+//     }
+//   }
+// });
 
-// }
-// answers()
