@@ -117,7 +117,7 @@ quizContainer.addEventListener("click", (e) => {
       generateQuestion();
     } else {
       popup.classList.add("open-popup")
-
+      document.querySelector(".score").innerHTML = "Score: "+ point 
       // alert("Game over");
       // alert(point);
       setInterval(()=>{
