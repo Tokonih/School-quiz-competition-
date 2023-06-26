@@ -41,13 +41,15 @@ if(signIn){
                 return(student.school == signinSch.value && student.email == signinEmail.value && student.password == signinPass.value)
             })
             if (getStudent){
+                // signinSch.value && signinEmail.value && signinPass.value == ""                
                 popup.classList.add("open-popup")
-                
                 // alert('login successful')
                 localStorage.setItem('participant', JSON.stringify(getStudent))
                 console.log(getStudent)
-                
-                    window.location.href = "Timer page.html"
+                    setInterval(()=>{
+                        window.location.href = "Timer page.html"
+                    }, 1000)
+
                     
             }else{
                 alert('invalid login details')

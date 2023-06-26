@@ -2,6 +2,8 @@ let studentDetail = document.getElementById("studentDetail");
 let getStudent = localStorage.getItem("participant");
 let storedstudent = JSON.parse(getStudent);
 console.log(storedstudent);
+let popup = document.getElementById("popup")
+let close = document.getElementById("close")    
 // for (let i = 0; i < storedstudent.length; i++) {
 // console.log(storedstudent)
 let nav = `
@@ -98,8 +100,6 @@ function generateQuestion() {
       `;
     quizContainer.innerHTML += btns;
   });
-
-  
 }
 generateQuestion();
 
@@ -107,29 +107,40 @@ quizContainer.addEventListener("click", (e) => {
   if (e.target.className === "answers") {
     if (e.target.innerHTML === questionsArr[index].ans) {
       point++;
-      console.log(point)
+      console.log(point);
     }
     index++;
-    
+
     quizContainer.innerHTML = "";
-    
+
     if (index < questionsArr.length) {
       generateQuestion();
     } else {
-      alert("Game over");
-  alert(point)
+      popup.classList.add("open-popup")
+
+      // alert("Game over");
+      // alert(point);
+      setInterval(()=>{
+
+        window.location.href = "index.html"
+      }, 1000)
 
       index = questionsArr.length - 1;
     }
   }
 });
 
+if(close){
+  close.onclick =()=>{
+      popup.classList.remove("open-popup")
 
+  }
+}
 // quizContainer.addEventListener("click", (e) => {
 //   if (e.target.className == "answers") {
 //     if (e.target.innerHTML == questionsArr[index].ans) {
 //       index++;
-      
+
 //       quizContainer.innerHTML = "";
 //       generateQuestion();
 
@@ -143,4 +154,3 @@ quizContainer.addEventListener("click", (e) => {
 //     }
 //   }
 // });
-
